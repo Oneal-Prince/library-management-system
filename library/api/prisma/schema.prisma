@@ -23,19 +23,24 @@ model User {
 }
 
 model Genre {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  books Book[]
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  books     Book[]
+  createdAt DateTime @default(now())
 }
 
 model Book {
   id          Int      @id @default(autoincrement())
   title       String
   author      String
+  isbn        String   @unique
+  totalCopies Int      @default(1)
   description String?
   publishedAt DateTime?
   available   Boolean  @default(true)
-  genreId     Int
-  genre       Genre    @relation(fields: [genreId], references: [id])
-  createdAt   DateTime @default(now())
+
+  genreId Int
+  genre   Genre @relation(fields: [genreId], references: [id])
+
+  createdAt DateTime @default(now())
 }
