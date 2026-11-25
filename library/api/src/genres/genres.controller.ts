@@ -10,9 +10,9 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 
-import { GenresService } from './genres.service';
-import { CreateGenreDto } from './dto/create-genre.dto';
-import { UpdateGenreDto } from './dto/update-genre.dto';
+import { GenresService } from './genres.service.js';
+import { CreateGenreDto } from './dto/create-genre.dto.js';
+import { UpdateGenreDto } from './dto/update-genre.dto.js';
 
 @Controller('genres')
 export class GenresController {

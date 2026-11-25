@@ -5,9 +5,9 @@ import {
   ConflictException,
 } from '@nestjs/common';
 
-import { PrismaService } from '../prisma/prisma.service';
-import { CreateGenreDto } from './dto/create-genre.dto';
-import { UpdateGenreDto } from './dto/update-genre.dto';
+import { PrismaService } from '../prisma/prisma.service.js';
+import { CreateGenreDto } from './dto/create-genre.dto.js';
+import { UpdateGenreDto } from './dto/update-genre.dto.js';
 
 @Injectable()
 export class GenresService {
