@@ -22,6 +22,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService
+  ],
 })
 export class AppModule {}
