@@ -25,6 +25,8 @@ export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
   // CREATE A BOOK
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('LIBRARIAN')
   @Post()
   create(@Body() createBookDto: CreateBookDto) {
     return this.booksService.create(createBookDto);
@@ -36,6 +38,8 @@ export class BooksController {
     return this.booksService.findAll(query);
   }
 
+
+
   // GET ONE BOOK
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
@@ -43,17 +47,21 @@ export class BooksController {
   }
 
   // UPDATE A BOOK
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('LIBRARIAN')
   @Patch(':id')
   update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateBookDto: UpdateBookDto,
-  ) {
-    return this.booksService.update(id, updateBookDto);
-  }
-
-  // DELETE A BOOK
-  @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.booksService.remove(id);
-  }
+  @Param('id', ParseIntPipe) id: number,
+  @Body() updateBookDto: UpdateBookDto,
+) {
+  return this.booksService.update(id, updateBookDto);
+}
+ // DELETE A BOOK - LIBRARIAN ONLY
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles('LIBRARIAN')
+@Delete(':id')
+remove(@Param('id', ParseIntPipe) id: number) {
+  return this.booksService.remove(id);
+}
+  
 }
